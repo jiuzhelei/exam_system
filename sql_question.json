@@ -1,7 +1,7 @@
 {
    "exam_info": {
     "title": "2026数据库题库",
-    "total_questions": 40,
+    "total_questions": 60,
     "types": ["填空题"]
   },
 
@@ -325,6 +325,166 @@
       "options": {},
       "correct_answer": "授权管理模块",
       "analysis": "数据库授权管理模块通过GRANT/REVOKE语句管理用户权限，控制不同用户对数据库对象（表、视图等）的访问范围，保障数据安全。"
+    },
+          {
+      "id": 41,
+      "type": "填空题",
+      "title": "在健身中心管理系统中，要对‘程文’教练执教课程中费用最低的课程价格上调15%，完整的UPDATE语句为：______",
+      "options": {},
+      "correct_answer": "UPDATE Course SET fee = fee * 1.15 WHERE coach = '程文' and fee = (SELECT MIN(fee) FROM Course WHERE coach = '程文' );",
+      "analysis": "先通过子查询获取程文教练课程中最低费用，再用UPDATE语句对该课程的费用上调15%，核心是MIN()函数和UPDATE的条件筛选。"
+    },
+    {
+      "id": 42,
+      "type": "填空题",
+      "title": "在健身中心管理系统中，查询每个健身房拥有的“钻石”级别会员人数（显示健身房名称和会员人数），完整的SELECT语句为：______",
+      "options": {},
+      "correct_answer": "SELECT g.gname, COUNT(*) AS 会员人数 FROM Gym g JOIN Member m ON g.gid = m.gid WHERE m.level = '钻石' GROUP BY g.gid, g.gname;",
+      "analysis": "通过JOIN关联健身房和会员表，WHERE筛选钻石会员，COUNT(*)统计人数，GROUP BY按健身房分组实现“每个健身房”的统计。"
+    },
+    {
+      "id": 43,
+      "type": "填空题",
+      "title": "在健身中心管理系统中，创建视图 V_A（包含课程号、课程名、课程总金额，并按课程总金额降序排序），完整的CREATE VIEW语句为：______",
+      "options": {},
+      "correct_answer": "CREATE VIEW V_A AS SELECT c.cid , c.cname ,(c.fee * COUNT(r.cid)) 课程总金额 FROM Course c JOIN Registration r ON c.cid = r.cid GROUP BY c.cid, c.cname, c.fee ORDER BY 课程总金额 DESC;",
+      "analysis": "视图基于课程表和报名表关联查询，课程总金额=单课费用×报名人数，GROUP BY分组后按总金额降序排序。"
+    },
+    {
+      "id": 44,
+      "type": "填空题",
+      "title": "在健身中心管理系统中，查询报名课程数量超过2门的会员信息（显示会员姓名和报名课程总数），完整的SELECT语句为：______",
+      "options": {},
+      "correct_answer": "SELECT m.mname, COUNT(r.cid) AS 报名课程总数 FROM Member m JOIN Registration r ON m.mid = r.mid GROUP BY m.mid, m.mname HAVING COUNT(r.cid) > 2;",
+      "analysis": "关联会员表和报名表后按会员分组，COUNT()统计报名课程数，HAVING筛选报名数超过2的分组（HAVING用于分组后筛选）。"
+    },
+    {
+      "id": 45,
+      "type": "填空题",
+      "title": "在健身中心管理系统中，删除所有费用低于1000且没有任何会员报名的课程记录，完整的DELETE语句为：______",
+      "options": {},
+      "correct_answer": "DELETE FROM Course WHERE fee<1000 AND cid NOT IN (SELECT cid FROM Registration);",
+      "analysis": "NOT IN排除有报名记录的课程ID，仅保留费用低于1000且无报名的课程，实现精准删除。"
+    },
+    {
+      "id": 46,
+      "type": "填空题",
+      "title": "在健身中心管理系统中，创建存储过程 P_AdjustSalary 时，判断无符合条件会员则回滚事务的核心逻辑是：______",
+      "options": {},
+      "correct_answer": "IF cnt = 0 THEN ROLLBACK; SELECT '无符合条件会员' AS 结果; ELSE COMMIT; SELECT CONCAT('成功为', cnt, '名会员提升等级') AS 结果; END IF;",
+      "analysis": "存储过程核心是事务控制：用ROW_COUNT()获取更新行数，行数为0则回滚，否则提交并提示结果，记住“判断行数→回滚/提交”的逻辑即可。"
+    },
+    {
+      "id": 47,
+      "type": "填空题",
+      "title": "在健身中心管理系统中，创建触发器 T_CheckReg 阻止会员同一天报名多门课程的核心判断和报错语句是：______",
+      "options": {},
+      "correct_answer": "IF reg_count > 0 THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '同一天只能报名一门课程'; END IF;",
+      "analysis": "触发器核心：先统计会员当天报名数，大于0则用SIGNAL抛出自定义错误，记住“SIGNAL SQLSTATE '45000' + 提示语”的报错格式即可。"
+    },
+    {
+      "id": 48,
+      "type": "填空题",
+      "title": "在校园社团活动管理系统中，将社团名为“音乐社团”的社员积分增加9分，完整的UPDATE语句为：______",
+      "options": {},
+      "correct_answer": "UPDATE member SET score = score + 9 WHERE cno in (select cno from club where cname='音乐社团');",
+      "analysis": "子查询先获取“音乐社团”的社团编号，再通过IN匹配社员表中的对应记录，实现积分批量增加。"
+    },
+    {
+      "id": 49,
+      "type": "填空题",
+      "title": "在校园社团活动管理系统中，查询社员平均积分超过70分的社团（显示社团名和平均积分avgscore），完整的SELECT语句为：______",
+      "options": {},
+      "correct_answer": "SELECT cname ,AVG(score) as avgscore FROM club join member on club.cno = member.cno GROUP BY club.cno,cname HAVING avgscore>70;",
+      "analysis": "AVG(score)计算平均积分，GROUP BY按社团分组，HAVING筛选平均积分超70的社团。"
+    },
+    {
+      "id": 50,
+      "type": "填空题",
+      "title": "在校园社团活动管理系统中，创建视图AV1（包含社团名、活动名、活动类型、开始时间和参与次数），完整的CREATE VIEW语句为：______",
+      "options": {},
+      "correct_answer": "CREATE VIEW AV1 AS SELECT cname,aname,type,start_time,attend_num FROM club join participate on club.cno = participate.cno join activity on participate.ano = activity.ano;",
+      "analysis": "通过两次JOIN关联社团表、参与表、活动表，整合所需字段创建视图，简化后续查询。"
+    },
+    {
+      "id": 51,
+      "type": "填空题",
+      "title": "在校园社团活动管理系统中，查询所有参与了“编程社”举办的“算法竞赛”活动的社员姓名，完整的SELECT语句为：______",
+      "options": {},
+      "correct_answer": "SELECT name FROM member WHERE mno in( SELECT p.mno FROM participate p join club c using(cno) join activity a using(ano) WHERE c.cname='编程社' and a.aname='算法竞赛');",
+      "analysis": "子查询通过关联三张表筛选出参与指定活动的社员编号，外层查询根据编号匹配社员姓名。"
+    },
+    {
+      "id": 52,
+      "type": "填空题",
+      "title": "在校园社团活动管理系统中，删除活动表中“讲座”类型且参与次数少于6的活动信息，完整的DELETE语句为：______",
+      "options": {},
+      "correct_answer": "DELETE FROM activity WHERE type ='讲座' AND ano in (select ano from participate where attend_num<6);",
+      "analysis": "子查询获取参与次数少于6的活动编号，外层DELETE结合活动类型筛选，删除符合条件的活动记录。"
+    },
+    {
+      "id": 53,
+      "type": "填空题",
+      "title": "在校园社团活动管理系统中，创建存储过程P1时，判断是否有低积分社员并执行回滚/提交的核心逻辑是：______",
+      "options": {},
+      "correct_answer": "IF EXISTS(SELECT * FROM member WHERE score<60) THEN DELETE FROM member WHERE score < 60; COMMIT; ELSE ROLLBACK TO SAVEPOINT point1; COMMIT; END IF;",
+      "analysis": "存储过程核心：用EXISTS判断是否有低积分社员，有则删除并提交，无则回滚到保存点，记住“EXISTS判断 + 保存点回滚”的核心逻辑。"
+    },
+    {
+      "id": 54,
+      "type": "填空题",
+      "title": "在校园社团活动管理系统中，创建触发器IN_CHECK_MEMBER阻止插入不存在社员记录的核心判断语句是：______",
+      "options": {},
+      "correct_answer": "IF new.mno NOT IN(select mno from member) THEN SIGNAL SQLSTATE '45000' SET message_text ='社员不存在，不能插入该记录！'; END IF;",
+      "analysis": "触发器核心：判断新插入的社员号是否不在社员表中，不在则抛错，记住“new.字段名 + NOT IN + SIGNAL报错”的格式。"
+    },
+    {
+      "id": 55,
+      "type": "填空题",
+      "title": "在在线图书销售系统中，将订单编号为‘20251209’中图书的价格统一下调7%，完整的UPDATE语句为：______",
+      "options": {},
+      "correct_answer": "UPDATE Book SET price= price* 0.93 WHERE bid in (SELECT bid FROM OrderItem WHERE oid = '20251209');",
+      "analysis": "子查询获取指定订单中的图书编号，外层UPDATE将对应图书价格乘以0.93（下调7%），实现批量调价。"
+    },
+    {
+      "id": 56,
+      "type": "填空题",
+      "title": "在在线图书销售系统中，查询订单总数大于3的用户名和订单数量，完整的SELECT语句为：______",
+      "options": {},
+      "correct_answer": "SELECT u.uname,COUNT(o.oid) AS 订单数量 FROM User u JOIN `Order` o ON u.uid = o.uid GROUP BY u.uid, u.uname HAVING COUNT(o.oid)>3;",
+      "analysis": "关联用户表和订单表后按用户分组，COUNT()统计订单数，HAVING筛选订单数超3的用户（Order是关键字，需加反引号）。"
+    },
+    {
+      "id": 57,
+      "type": "填空题",
+      "title": "在在线图书销售系统中，创建视图V_BO（包含图书编号、图书名和销售总量，按销售总量降序排序），完整的CREATE VIEW语句为：______",
+      "options": {},
+      "correct_answer": "CREATE VIEW V_BO AS SELECT b.bid,b.bname,SUM(oi.quantity) 销售总量 FROM Book b JOIN OrderItem oi ON b.bid=oi.bid GROUP BY b.bid, b.bname ORDER BY 销售总量 DESC;",
+      "analysis": "SUM(oi.quantity)统计每本图书的销售总量，GROUP BY按图书分组，ORDER BY实现降序排序。"
+    },
+    {
+      "id": 58,
+      "type": "填空题",
+      "title": "在在线图书销售系统中，查询库存大于50且销售总量超过7的图书信息（显示书名、库存和销售总量），完整的SELECT语句为：______",
+      "options": {},
+      "correct_answer": "SELECT b.bname,b.stock,SUM(oi.quantity) 销售总量 FROM Book b JOIN OrderItem oi ON b.bid=oi.bid GROUP BY b.bid,b.bname,b.stock HAVING b.stock>50 AND SUM(oi.quantity)>7;",
+      "analysis": "关联图书表和订单详情表后按图书分组，HAVING同时筛选库存和销售总量条件，实现多条件分组筛选。"
+    },
+    {
+      "id": 59,
+      "type": "填空题",
+      "title": "在在线图书销售系统中，删除用户“李明”的订单总金额小于300的所有订单记录，完整的DELETE语句为：______",
+      "options": {},
+      "correct_answer": "DELETE FROM `Order` WHERE uid in (SELECT uid FROM User WHERE uname='李明') AND total_amount<300;",
+      "analysis": "子查询获取“李明”的用户编号，外层DELETE结合订单金额条件，删除符合条件的订单（Order需加反引号避免关键字冲突）。"
+    },
+    {
+      "id": 60,
+      "type": "填空题",
+      "title": "在在线图书销售系统中，创建触发器T_CheckOrder阻止订单数超5的用户下单的核心判断语句是：______",
+      "options": {},
+      "correct_answer": "IF order_count>= 5 THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='用户订单数已达上限，无法下单'; END IF;",
+      "analysis": "触发器核心：统计用户已有订单数，超过5则抛错，记住“COUNT(*)统计订单数 + SIGNAL报错”的核心逻辑，SQLSTATE '45000'是通用自定义错误码。"
     }
   ]
 }
