@@ -1,7 +1,7 @@
 {
   "exam_info": {
     "title": "2025操作系统期末复习题库",
-    "total_questions": 71,
+    "total_questions": 72,
     "types": ["选择题", "填空题"]
   },
   "questions": [
@@ -820,3 +820,4 @@
     }
   ]
 }
+
