@@ -1,0 +1,1255 @@
+{
+   "exam_info": {
+    "title": "2026数据库题库",
+    "total_questions": 111,
+    "types": ["填空题","选择题"]
+  },
+
+   "questions": [
+    {
+      "id": 1,
+      "type": "填空题",
+      "title": "用二维表结构表示实体以及实体间联系的数据模型称为______数据模型。",
+      "options": {},
+      "correct_answer": "关系",
+      "analysis": "关系数据模型是用二维表（关系）来表示实体及实体间联系的数据模型，是目前最常用的数据库数据模型。"
+    },
+    {
+      "id": 2,
+      "type": "填空题",
+      "title": "数据库管理系统主要由数据定义、______和数据库管理例行程序三部分组成。",
+      "options": {},
+      "correct_answer": "数据操纵",
+      "analysis": "数据库管理系统（DBMS）核心功能包括数据定义（DDL）、数据操纵（DML）和数据库管理例行程序，分别负责表结构定义、数据增删改查和系统管理。"
+    },
+    {
+      "id": 3,
+      "type": "填空题",
+      "title": "数据库的完整性约束包括实体完整性、参照完整性和______。",
+      "options": {},
+      "correct_answer": "用户定义的完整性",
+      "analysis": "数据库三大完整性约束：实体完整性（主键非空唯一）、参照完整性（外键关联有效）、用户定义的完整性（自定义业务规则）。"
+    },
+    {
+      "id": 4,
+      "type": "填空题",
+      "title": "关系数据模型中，二维表的列称为______，二维表的行称为______。",
+      "options": {},
+      "correct_answer": "属性，元组",
+      "analysis": "关系模型中，二维表的列（字段）称为属性，行（记录）称为元组，一个关系就是一个元组的集合。"
+    },
+    {
+      "id": 5,
+      "type": "填空题",
+      "title": "在关系模型中，二维表的列称为______。",
+      "options": {},
+      "correct_answer": "属性",
+      "analysis": "关系模型里，二维表的列对应实体的特征，称为属性；每一列的取值范围称为域。"
+    },
+    {
+      "id": 6,
+      "type": "填空题",
+      "title": "若有关系模式R(A，B，C)和S(C，D，E)，SQL语句SELECT A, D FROM R, S WHERE R.C=S.C AND E = '80' ; 对应的关系代数表达式是：______。",
+      "options": {},
+      "correct_answer": "ΠA,D(σE='80'(R⋈S))",
+      "analysis": "Π表示投影（选取列），σ表示选择（筛选行），⋈表示自然连接（按相同列C连接），该表达式先连接R和S，筛选E='80'的行，再投影A、D列。"
+    },
+    {
+      "id": 7,
+      "type": "填空题",
+      "title": "数据库系统的三级模式结构包括外模式、模式和______。",
+      "options": {},
+      "correct_answer": "内模式",
+      "analysis": "数据库三级模式：外模式（用户视图）、模式（全局逻辑结构）、内模式（物理存储结构），二级映像保证数据独立性。"
+    },
+    {
+      "id": 8,
+      "type": "填空题",
+      "title": "产生数据冗余和异常的两个重要原因是：部分依赖和______。",
+      "options": {},
+      "correct_answer": "传递依赖",
+      "analysis": "部分依赖（非主属性依赖主键的部分字段）和传递依赖（非主属性通过中间属性依赖主键）会导致数据冗余、插入/删除/更新异常。"
+    },
+    {
+      "id": 9,
+      "type": "填空题",
+      "title": "关系规范化理论中，1NF要求关系中的每个属性值都必须是______的值。",
+      "options": {},
+      "correct_answer": "不可再分",
+      "analysis": "第一范式（1NF）核心要求：属性原子性，即每个属性值不能再拆分成多个子值，避免复合属性、多值属性。"
+    },
+    {
+      "id": 10,
+      "type": "填空题",
+      "title": "在关系规范化理论中，2NF消除了非主属性对码的______。",
+      "options": {},
+      "correct_answer": "部分函数依赖",
+      "analysis": "第二范式（2NF）建立在1NF基础上，要求非主属性完全依赖于主键（码），消除部分函数依赖。"
+    },
+    {
+      "id": 11,
+      "type": "填空题",
+      "title": "在数据库设计中，如果一个表中存在非主属性对候选键的部分依赖，则该表未达到______范式。",
+      "options": {},
+      "correct_answer": "第二/（2NF）",
+      "analysis": "2NF的核心是消除非主属性对候选键的部分函数依赖，未满足则仅达到1NF，会存在数据冗余问题。"
+    },
+    {
+      "id": 12,
+      "type": "填空题",
+      "title": "一个关系模式存在非主属性对候选键的传递函数依赖，则它违反了______范式的要求。",
+      "options": {},
+      "correct_answer": "第三/（3NF）",
+      "analysis": "第三范式（3NF）要求消除非主属性对候选键的传递函数依赖，进一步降低数据冗余，提升数据一致性。"
+    },
+    {
+      "id": 13,
+      "type": "填空题",
+      "title": "数据库设计一般分为六个阶段：需求分析、概念结构设计、逻辑结构设计、物理设计、______、数据库运行与维护。",
+      "options": {},
+      "correct_answer": "数据库实施",
+      "analysis": "数据库设计六阶段：需求分析（明确业务需求）→概念结构设计（E-R图）→逻辑结构设计（转关系模型）→物理设计（存储/索引）→实施（建表/插数据）→运行维护。"
+    },
+    {
+      "id": 14,
+      "type": "填空题",
+      "title": "数据库设计的六个阶段中，紧随物理设计之后的是______。",
+      "options": {},
+      "correct_answer": "数据库实施",
+      "analysis": "物理设计确定存储结构和存取方法后，进入实施阶段，包括创建数据库、表，加载数据，编写应用程序等。"
+    },
+    {
+      "id": 15,
+      "type": "填空题",
+      "title": "数据模型的抽象级别通常分为三个层次：概念模型、逻辑模型和______。",
+      "options": {},
+      "correct_answer": "物理模型",
+      "analysis": "数据模型三层抽象：概念模型（E-R模型，面向用户）、逻辑模型（关系模型，面向设计）、物理模型（面向存储）。"
+    },
+    {
+      "id": 16,
+      "type": "填空题",
+      "title": "在E-R模型中，实体之间的______用菱形表示。",
+      "options": {},
+      "correct_answer": "联系",
+      "analysis": "E-R模型（实体-关系模型）中，矩形表示实体，椭圆表示属性，菱形表示实体之间的联系（一对一、一对多、多对多）。"
+    },
+    {
+      "id": 17,
+      "type": "填空题",
+      "title": "在信息世界中，用______来表示实体的特征。",
+      "options": {},
+      "correct_answer": "属性",
+      "analysis": "信息世界中，实体是客观存在的事物，属性是实体的特征（如学生实体的姓名、学号等）。"
+    },
+    {
+      "id": 18,
+      "type": "填空题",
+      "title": "概念模型的典型代表是______模型，是沟通用户与开发人员的重要工具。",
+      "options": {},
+      "correct_answer": "E-R/（实体-关系）",
+      "analysis": "E-R模型是概念模型的核心，用直观的图形表示实体、属性和联系，便于用户和开发人员沟通需求。"
+    },
+    {
+      "id": 19,
+      "type": "填空题",
+      "title": "在关系数据库设计中，将E-R图转换成关系模型的过程属于______设计阶段。",
+      "options": {},
+      "correct_answer": "逻辑",
+      "analysis": "逻辑结构设计阶段的核心任务是将概念结构（E-R图）转换为具体的关系模型（二维表结构），并进行规范化处理。"
+    },
+    {
+      "id": 20,
+      "type": "填空题",
+      "title": "在数据库完整性约束中，______约束用于保证主码属性的值唯一且非空，是三大完整性约束的基础。",
+      "options": {},
+      "correct_answer": "主键",
+      "analysis": "实体完整性通过主键约束实现，要求主键列的值唯一且非空，确保每个实体可唯一标识。"
+    },
+    {
+      "id": 21,
+      "type": "填空题",
+      "title": "数据库的______约束保证字段值的合法性。",
+      "options": {},
+      "correct_answer": "检查",
+      "analysis": "检查约束（CHECK）用于自定义字段的取值规则（如年龄>0），属于用户定义的完整性约束范畴。"
+    },
+    {
+      "id": 22,
+      "type": "填空题",
+      "title": "在关系A（S，SN，D）和B（D，CN，NM）中，A的主码是S，B的主码是D，则D在A中称为______。",
+      "options": {},
+      "correct_answer": "外码",
+      "analysis": "外码（外键）是一个表中引用另一个表主键的字段，用于实现参照完整性，此处A表的D字段引用B表的主键D，因此是外码。"
+    },
+    {
+      "id": 23,
+      "type": "填空题",
+      "title": "统计记录行时，要消除重复记录需使用关键字是______。",
+      "options": {},
+      "correct_answer": "distinct",
+      "analysis": "SQL中DISTINCT关键字用于去除查询结果中的重复行，如SELECT DISTINCT 字段 FROM 表名。"
+    },
+    {
+      "id": 24,
+      "type": "填空题",
+      "title": "SQL语句中用来消除重复行的关键字是______。",
+      "options": {},
+      "correct_answer": "DISTINCT",
+      "analysis": "DISTINCT关键字不区分大小写（主流数据库），作用是过滤查询结果的重复记录，只保留唯一值。"
+    },
+    {
+      "id": 25,
+      "type": "填空题",
+      "title": "SQL中修改表结构的关键字是______。",
+      "options": {},
+      "correct_answer": "ALTER TABLE",
+      "analysis": "ALTER TABLE是SQL的DDL语句，用于修改表结构，如添加字段、修改字段类型、删除字段等。"
+    },
+    {
+      "id": 26,
+      "type": "填空题",
+      "title": "SQL中，用于创建表的语句是______。",
+      "options": {},
+      "correct_answer": "CREATE TABLE",
+      "analysis": "CREATE TABLE是SQL的DDL核心语句，用于定义表的结构（字段名、类型、约束等）。"
+    },
+    {
+      "id": 27,
+      "type": "填空题",
+      "title": "在SQL中，用于删除表的语句是______。",
+      "options": {},
+      "correct_answer": "DROP TABLE",
+      "analysis": "DROP TABLE用于删除整个表结构及所有数据，执行后不可恢复；TRUNCATE仅删除数据，保留表结构。"
+    },
+    {
+      "id": 28,
+      "type": "填空题",
+      "title": "对原始字段进行条件筛选，条件写在where关键字后面；对分组后计算的字段进行条件筛选，条件写在______关键字后面。",
+      "options": {},
+      "correct_answer": "having",
+      "analysis": "WHERE筛选原始行，HAVING筛选GROUP BY分组后的结果（需配合聚合函数使用，如HAVING COUNT(*)>10）。"
+    },
+    {
+      "id": 29,
+      "type": "填空题",
+      "title": "视图不能直接存储数据，其数据来源于______。",
+      "options": {},
+      "correct_answer": "基本表",
+      "analysis": "视图是虚拟表，本身不存储数据，其数据来自于一个或多个基本表（或其他视图），查询视图本质是执行底层的SELECT语句。"
+    },
+    {
+      "id": 30,
+      "type": "填空题",
+      "title": "在Student表的Sname列上建立一个名为Stusname的唯一索引的SQL语句为：______。",
+      "options": {},
+      "correct_answer": "CREATE UNIQUE INDEX Stusname ON student(Sname)",
+      "analysis": "CREATE UNIQUE INDEX用于创建唯一索引，确保索引列的值唯一，语法：CREATE [UNIQUE] INDEX 索引名 ON 表名(字段名)。"
+    },
+    {
+      "id": 31,
+      "type": "填空题",
+      "title": "在物理结构设计中，______技术是提高查询效率的重要技术，它通过建立索引表来快速定位数据。",
+      "options": {},
+      "correct_answer": "索引",
+      "analysis": "索引是物理设计阶段的核心优化手段，通过构建索引表（如B+树）减少查询时的磁盘I/O，提升查询速度，但会增加插入/更新/删除的开销。"
+    },
+    {
+      "id": 32,
+      "type": "填空题",
+      "title": "在物理结构设计中，______是提高查询效率的重要技术。",
+      "options": {},
+      "correct_answer": "索引",
+      "analysis": "索引通过预排序和快速定位机制，将查询的时间复杂度从O(n)降低到O(logn)，是提升查询性能的关键技术。"
+    },
+    {
+      "id": 33,
+      "type": "填空题",
+      "title": "创建在两个列或者多个列上的索引称为______。",
+      "options": {},
+      "correct_answer": "复合索引",
+      "analysis": "复合索引（组合索引）是基于多个字段创建的索引，遵循“最左前缀原则”，适用于多字段联合查询的场景。"
+    },
+    {
+      "id": 34,
+      "type": "填空题",
+      "title": "事务的四大特性（ACID）包括原子性、一致性、隔离性和______。",
+      "options": {},
+      "correct_answer": "持久性",
+      "analysis": "事务ACID特性：原子性（要么全做要么全不做）、一致性（事务前后数据状态合法）、隔离性（事务间互不干扰）、持久性（提交后数据永久保存）。"
+    },
+    {
+      "id": 35,
+      "type": "填空题",
+      "title": "事务的原子性保证了事务中的操作要么______，要么______。",
+      "options": {},
+      "correct_answer": "全部执行，全部不执行",
+      "analysis": "原子性（Atomicity）是事务的核心特性之一，通过事务的提交（COMMIT）和回滚（ROLLBACK）实现。"
+    },
+    {
+      "id": 36,
+      "type": "填空题",
+      "title": "数据库的______机制用于防止在系统崩溃时丢失未提交的事务数据。",
+      "options": {},
+      "correct_answer": "日志",
+      "analysis": "数据库日志（如redo日志、undo日志）记录事务的操作，系统崩溃后可通过日志恢复未提交的事务，保证数据一致性。"
+    },
+    {
+      "id": 37,
+      "type": "填空题",
+      "title": "SQL中，用于删除满足条件的记录的命令是______。",
+      "options": {},
+      "correct_answer": "DELETE",
+      "analysis": "DELETE是DML语句，用于删除表中满足条件的记录（DELETE FROM 表名 WHERE 条件），无WHERE则删除所有记录。"
+    },
+    {
+      "id": 38,
+      "type": "填空题",
+      "title": "______是一种特殊的存储过程，它可以在对一个表上进行INSERT、UPDATE和DELETE操作中的任一种或几种操作时被自动调用执行。",
+      "options": {},
+      "correct_answer": "触发器",
+      "analysis": "触发器（Trigger）是自动执行的存储过程，绑定到表的增删改操作，用于实现复杂的业务规则（如数据校验、日志记录）。"
+    },
+    {
+      "id": 39,
+      "type": "填空题",
+      "title": "数据库的______恢复机制用于处理系统故障。",
+      "options": {},
+      "correct_answer": "系统",
+      "analysis": "数据库系统恢复机制包括日志、备份、故障恢复策略等，用于处理系统崩溃、硬件故障等问题，保证数据可恢复。"
+    },
+    {
+      "id": 40,
+      "type": "填空题",
+      "title": "数据库的______负责管理用户访问权限，确保数据的安全性和完整性。",
+      "options": {},
+      "correct_answer": "授权管理模块",
+      "analysis": "数据库授权管理模块通过GRANT/REVOKE语句管理用户权限，控制不同用户对数据库对象（表、视图等）的访问范围，保障数据安全。"
+    },
+    
+    {
+      "id": 41,
+      "type": "单选题",
+      "title": "数据库设计中，“为避免数据冗余和更新异常，将一个关系模式分解为多个关系模式”的过程称为（  ）。",
+      "options": {
+        "A": "模式合并",
+        "B": "规范化",
+        "C": "逆规范化",
+        "D": "概念建模"
+      },
+      "correct_answer": "B",
+      "analysis": "规范化是指通过分解关系模式来消除数据冗余、插入异常、更新异常和删除异常等问题，提升数据库设计的合理性。"
+    },
+    {
+      "id": 42,
+      "type": "单选题",
+      "title": "数据库设计中，将 E-R 模型转换为关系模式的阶段是（  ）。",
+      "options": {
+        "A": "需求分析",
+        "B": "概念结构设计",
+        "C": "逻辑结构设计",
+        "D": "物理结构设计"
+      },
+      "correct_answer": "C",
+      "analysis": "逻辑结构设计阶段的核心工作是将概念结构（E-R模型）转换为具体数据库管理系统支持的关系模式。"
+    },
+    {
+      "id": 43,
+      "type": "单选题",
+      "title": "数据库设计中，若关系模式存在数据冗余、更新异常等问题，通过将其分解为满足更高范式要求的多个关系模式，这一优化过程的核心目标是（  ）。",
+      "options": {
+        "A": "提升数据查询速度",
+        "B": "实现关系模式规范化",
+        "C": "简化数据库物理存储",
+        "D": "降低数据类型复杂度"
+      },
+      "correct_answer": "B",
+      "analysis": "规范化的核心目标是消除数据冗余和更新异常，通过分解关系模式满足1NF、2NF、3NF等范式要求。"
+    },
+    {
+      "id": 44,
+      "type": "单选题",
+      "title": "在数据库设计过程中，绘制数据流图（DFD）的阶段是（  ）。",
+      "options": {
+        "A": "需求分析",
+        "B": "概念结构设计",
+        "C": "逻辑结构设计",
+        "D": "物理结构设计"
+      },
+      "correct_answer": "A",
+      "analysis": "需求分析阶段需要通过数据流图（DFD）和数据字典来描述系统的数据流和数据需求。"
+    },
+    {
+      "id": 45,
+      "type": "单选题",
+      "title": "在数据库设计中，E-R图产生于（    ）。",
+      "options": {
+        "A": "需求分析阶段",
+        "B": "概念设计阶段",
+        "C": "逻辑设计阶段",
+        "D": "物理设计阶段"
+      },
+      "correct_answer": "B",
+      "analysis": "概念结构设计阶段的核心成果是E-R图（实体-联系图），用于描述现实世界的实体和联系。"
+    },
+    {
+      "id": 46,
+      "type": "单选题",
+      "title": "在E-R模型中，用于描述实体之间联系的术语是（  ）。",
+      "options": {
+        "A": "属性",
+        "B": "域",
+        "C": "关系",
+        "D": "键"
+      },
+      "correct_answer": "C",
+      "analysis": "E-R模型中，实体之间的关联关系称为“联系”，在关系模型中对应为“关系”。"
+    },
+    {
+      "id": 47,
+      "type": "单选题",
+      "title": "从E-R模型关系向关系模型转换时，一个M:N联系转换为关系模式时，该关系模式的码是（    ）。",
+      "options": {
+        "A": "M端实体的码",
+        "B": "N 端实体的码",
+        "C": "M端实体码与N 端实体码组合",
+        "D": "重新选取其他属性"
+      },
+      "correct_answer": "C",
+      "analysis": "M:N联系转换为关系模式时，需要将两端实体的主键组合作为该关系模式的联合主键。"
+    },
+    {
+      "id": 48,
+      "type": "单选题",
+      "title": "数据库应用系统设计的需求分析阶段生成的文档是数据字典和（）。",
+      "options": {
+        "A": "数据流图",
+        "B": "E-R图",
+        "C": "功能模块图",
+        "D": "UML图"
+      },
+      "correct_answer": "A",
+      "analysis": "需求分析阶段的核心交付物是数据字典和数据流图（DFD），E-R图属于概念设计阶段产物。"
+    },
+    {
+      "id": 49,
+      "type": "单选题",
+      "title": "概念模型是现实世界的第一层抽象，这一类最著名的模型是(    )。",
+      "options": {
+        "A": "层次模型",
+        "B": "关系模型",
+        "C": "实体-联系模型",
+        "D": "网状模型"
+      },
+      "correct_answer": "C",
+      "analysis": "实体-联系（E-R）模型是最经典的概念模型，用于抽象描述现实世界的实体和联系。"
+    },
+    {
+      "id": 50,
+      "type": "单选题",
+      "title": "在E-R图中，联系的类型不包括(    )。",
+      "options": {
+        "A": "一对一（1:1）",
+        "B": "一对多（1:N）",
+        "C": "多对多（M:N）",
+        "D": "多对一（N:1）"
+      },
+      "correct_answer": "D",
+      "analysis": "E-R图中联系的基本类型为1:1、1:N、M:N，多对一（N:1）属于一对多的反向表述，并非独立类型。"
+    },
+    {
+      "id": 51,
+      "type": "单选题",
+      "title": "代码Delete from customer WHERE c_id=1 and cname=“张倩”执行的操作是（  ）。",
+      "options": {
+        "A": "删除姓名叫张倩且c_id为1的记录",
+        "B": "删除姓名叫张倩的记录",
+        "C": "删除c_id值为1的记录",
+        "D": "更新c_id值为1的姓名为张倩"
+      },
+      "correct_answer": "A",
+      "analysis": "DELETE语句的WHERE子句用于指定删除条件，多个条件用AND连接时表示同时满足。"
+    },
+    {
+      "id": 52,
+      "type": "单选题",
+      "title": "代码UPDATE student SET age=age+1 WHERE sdept='计算机学院'执行的操作是（  ）。",
+      "options": {
+        "A": "将计算机学院所有学生的年龄增加1岁",
+        "B": "将计算机学院学生的年龄设置为1岁",
+        "C": "查询计算机学院所有学生的年龄",
+        "D": "删除计算机学院年龄为1岁的学生记录"
+      },
+      "correct_answer": "A",
+      "analysis": "UPDATE语句的SET子句中age=age+1表示将原有年龄值加1，WHERE子句限定仅修改计算机学院的学生。"
+    },
+    {
+      "id": 53,
+      "type": "单选题",
+      "title": "下列关于嵌套查询的说法中，哪一项是正确的（    ）。",
+      "options": {
+        "A": "嵌套查询不能引用外部查询的列",
+        "B": "嵌套查询可以嵌套在SELECT、FROM和WHERE子句中",
+        "C": "嵌套查询只能返回单个值",
+        "D": "嵌套查询的执行顺序总是先执行主查询再执行子查询"
+      },
+      "correct_answer": "B",
+      "analysis": "嵌套查询（子查询）可以出现在SELECT、FROM、WHERE、HAVING等多个子句中，支持多值返回，执行顺序通常为先子查询后主查询（相关子查询除外）。"
+    },
+    {
+      "id": 54,
+      "type": "单选题",
+      "title": "在SQL中，以下哪条语句可以正确地按部门分组并计算每个部门的平均工资（    ）。",
+      "options": {
+        "A": "SELECT department, AVG(salary) FROM employees;",
+        "B": " SELECT department, AVG(salary) FROM employees GROUP BY department;",
+        "C": " SELECT AVG(salary) FROM employees;",
+        "D": " SELECT department, SUM(salary) FROM employees;"
+      },
+      "correct_answer": "B",
+      "analysis": "使用聚合函数（如AVG）时，非聚合列必须出现在GROUP BY子句中，GROUP BY department表示按部门分组计算平均工资。"
+    },
+    {
+      "id": 55,
+      "type": "单选题",
+      "title": "设有一个关系：DEPT(DNO,DNAME)，如果要找出倒数第三个字母为W，并且至少包含4个字母的DNAME，则查询条件子句应写成 WHERE DNAME LIKE（    ）。",
+      "options": {
+        "A": "'__W_% '",
+        "B": "'_%W__ '",
+        "C": "'_W__'",
+        "D": "'_W__% '"
+      },
+      "correct_answer": "B",
+      "analysis": "LIKE通配符中，_匹配单个字符，%匹配任意字符。_%W__ 表示：任意字符+任意字符+W+两个字符，即倒数第三个字母为W且至少4个字符。"
+    },
+    {
+      "id": 56,
+      "type": "单选题",
+      "title": "利用T-SQL语言创建表的语句是（）。",
+      "options": {
+        "A": "Delete Table",
+        "B": "Drop Table",
+        "C": "Add Table",
+        "D": "Create Table"
+      },
+      "correct_answer": "D",
+      "analysis": "T-SQL中创建表的核心语句是CREATE TABLE，Delete用于删除数据，Drop用于删除表结构，Add用于新增列。"
+    },
+    {
+      "id": 57,
+      "type": "单选题",
+      "title": "在SQL中，与“IN”等价的操作是（    ）。",
+      "options": {
+        "A": "=ALL",
+        "B": "=ANY",
+        "C": "!=ALL",
+        "D": "!=ANY"
+      },
+      "correct_answer": "B",
+      "analysis": "IN表示匹配列表中的任意一个值，等价于=ANY；ALL表示匹配列表中的所有值，!=ALL等价于NOT IN。"
+    },
+    {
+      "id": 58,
+      "type": "单选题",
+      "title": "在T-SQL中，与“NOT IN”等价的操作是（）。",
+      "options": {
+        "A": "= ALL",
+        "B": "< >ALL",
+        "C": "= SOME",
+        "D": "< >SOME"
+      },
+      "correct_answer": "B",
+      "analysis": "NOT IN表示不等于列表中的任何一个值，等价于<>ALL（<>是不等于的标准写法）；SOME与ANY含义相同。"
+    },
+    {
+      "id": 59,
+      "type": "单选题",
+      "title": "有学生选课表sc，包含学生学号sno、课程编号cno，以下能够返回至少被 3 名学生选修过的课程编号cno 的 SQL 语句是（    ）。",
+      "options": {
+        "A": "SELECT cno FROM sc WHERE COUNT (sno) > 2;",
+        "B": "SELECT cno FROM sc GROUP BY cno HAVING COUNT (sno)>=3;",
+        "C": "SELECT cno FROM sc HAVING COUNT (sno) > 2 GROUP BY cno;",
+        "D": "SELECT cno FROM sc WHERE MAX (sno)>=3 GROUP BY cno;"
+      },
+      "correct_answer": "B",
+      "analysis": "聚合函数（COUNT）不能用于WHERE子句，需用HAVING子句过滤分组结果；GROUP BY cno按课程分组，HAVING COUNT(sno)>=3筛选出选修人数≥3的课程。"
+    },
+    {
+      "id": 60,
+      "type": "单选题",
+      "title": "SQL查询中，以下哪个语句用于去除结果集中的重复行（    ）。",
+      "options": {
+        "A": "DISTINCT",
+        "B": "UNIQUE",
+        "C": "DIFFERENT",
+        "D": "REMOVE DUPLICATES"
+      },
+      "correct_answer": "A",
+      "analysis": "DISTINCT是SQL标准中去除重复行的关键字，需放在SELECT之后；UNIQUE通常用于约束定义，而非查询去重。"
+    },
+    {
+      "id": 61,
+      "type": "单选题",
+      "title": "SQL语句中，向基本表增加字段的语句是(    )。",
+      "options": {
+        "A": "Insert Into",
+        "B": "Alter Table Add",
+        "C": "Modify Column",
+        "D": "Update Column"
+      },
+      "correct_answer": "B",
+      "analysis": "修改表结构使用ALTER TABLE语句，新增列的语法为ALTER TABLE 表名 ADD 列名 数据类型；Insert Into用于插入数据，Update用于更新数据。"
+    },
+    {
+      "id": 62,
+      "type": "单选题",
+      "title": "用于返回系统当前日期的函数是(    )。",
+      "options": {
+        "A": "YEAR()",
+        "B": "MAX()",
+        "C": "now( )",
+        "D": "curdate()"
+      },
+      "correct_answer": "C",
+      "analysis": "now()返回当前日期和时间（如2026-01-14 10:00:00）；curdate()仅返回日期；YEAR()返回年份；MAX()是聚合函数。"
+    },
+    {
+      "id": 63,
+      "type": "单选题",
+      "title": "如果需要查询关系R中属性A的值为NULL的元组，则选择子句应为 (   )。",
+      "options": {
+        "A": "Where A = NULL",
+        "B": "Where A == NULL",
+        "C": "Where A is NULL",
+        "D": "Where A not is NULL"
+      },
+      "correct_answer": "C",
+      "analysis": "NULL表示未知值，不能用=、==等比较运算符，必须用IS NULL（为空）或IS NOT NULL（不为空）。"
+    },
+    {
+      "id": 64,
+      "type": "单选题",
+      "title": "对表中数据进行删除的操作是（   ）。",
+      "options": {
+        "A": "DELETE",
+        "B": "ALTER",
+        "C": "DROP",
+        "D": "UPDATE"
+      },
+      "correct_answer": "A",
+      "analysis": "DELETE用于删除表中的数据（可指定条件）；DROP用于删除表/数据库结构；ALTER用于修改表结构；UPDATE用于更新数据。"
+    },
+    {
+      "id": 65,
+      "type": "单选题",
+      "title": "SQL语句中，用于删除表结构的命令是（ ）。",
+      "options": {
+        "A": "DELETE TABLE",
+        "B": "DROP TABLE",
+        "C": "REMOVE TABLE",
+        "D": "CLEAR TABLE"
+      },
+      "correct_answer": "B",
+      "analysis": "DROP TABLE是删除表结构的标准SQL命令，执行后表及所有数据都会被删除，且无法恢复（无备份时）。"
+    },
+    {
+      "id": 66,
+      "type": "单选题",
+      "title": "已知关系sc(sno,cno,score)，下列SQL语句语法正确的是（ ）。",
+      "options": {
+        "A": "SELECT * FROM sc WHERE score > '60'",
+        "B": "SELECT sno, AVG(score) FROM sc",
+        "C": "SELECT cno, COUNT(*) FROM sc",
+        "D": "SELECT * FROM sc ORDER BY score DESC"
+      },
+      "correct_answer": "D",
+      "analysis": "A错误：score是数值类型，无需加单引号；B/C错误：聚合函数（AVG/COUNT）与非聚合列（sno/cno）同时查询时需加GROUP BY；D正确：ORDER BY score DESC表示按分数降序排列。"
+    },
+    {
+      "id": 67,
+      "type": "单选题",
+      "title": "若要求查找‘李’姓学生的学生号和姓名，正确的 SQL语句是（    ）。",
+      "options": {
+        "A": "SELECT S#,SNAME FROM S WHERE SNAME=’李%’;",
+        "B": "SELECT S#,SNAME FROM S WHERE SNAME=’%李%’;",
+        "C": "SELECT S#,SNAME FROM S WHERE SNAME LIKE ’李%’;",
+        "D": "SELECT S#,SNAME FROM S WHERE SNAME LIKE ’%李%’;"
+      },
+      "correct_answer": "C",
+      "analysis": "模糊查询需用LIKE关键字，=不支持通配符；李%表示以“李”开头的姓名（李姓），%李%表示包含“李”的姓名。"
+    },
+    {
+      "id": 68,
+      "type": "单选题",
+      "title": "用下面的T-SQL语句建立一个基本表：CREATE  TABLE  Student ( Sno CHAR(4) PRIMARY KEY , Sname CHAR(8) NOT NULL , Sex CHAR(2) , age INT )可以插入到表中的元组是（）。",
+      "options": {
+        "A": "'5021'，'刘祥'，男，21",
+        "B": "NULL，'刘祥'，NULL，21",
+        "C": "'5021'，NULL，男，21",
+        "D": "'5021'，'刘祥'，NULL，NULL"
+      },
+      "correct_answer": "D",
+      "analysis": "Sno是主键（非空且唯一），B错误；Sname设置NOT NULL，C错误；A中“男”需加单引号；D符合所有约束：Sno非空、Sname非空，Sex和age可为NULL。"
+    },
+    {
+      "id": 69,
+      "type": "单选题",
+      "title": "下列哪个子句中不能使用嵌套查询（    ）。",
+      "options": {
+        "A": "SELECT",
+        "B": "FROM",
+        "C": "WHERE",
+        "D": "ORDER BY"
+      },
+      "correct_answer": "D",
+      "analysis": "ORDER BY子句用于排序，只能引用查询结果中的列名或列序号，不能使用嵌套查询；SELECT、FROM、WHERE均可使用子查询。"
+    },
+    {
+      "id": 70,
+      "type": "单选题",
+      "title": "SQL中，用于合并两个查询结果的运算符是（ ）。",
+      "options": {
+        "A": "UNION",
+        "B": "INTERSECT",
+        "C": "MINUS",
+        "D": "JOIN"
+      },
+      "correct_answer": "A",
+      "analysis": "UNION用于合并两个查询结果集（自动去重）；INTERSECT是交集，MINUS是差集（MySQL不支持），JOIN是表连接（非结果集合并）。"
+    },
+    {
+      "id": 71,
+      "type": "单选题",
+      "title": "视图是一个虚表，视图的构造基于（    ）。",
+      "options": {
+        "A": "基本表或视图",
+        "B": "视图",
+        "C": "基本表",
+        "D": "数据字典"
+      },
+      "correct_answer": "A",
+      "analysis": "视图可以基于一个或多个基本表创建，也可以基于其他视图创建（嵌套视图），视图本身不存储数据，仅存储查询定义。"
+    },
+    {
+      "id": 72,
+      "type": "单选题",
+      "title": "视图是一个“虚表”，视图的构造基于(    )。",
+      "options": {
+        "A": "基本表",
+        "B": "基本表或视图",
+        "C": "视图",
+        "D": "数据字典"
+      },
+      "correct_answer": "B",
+      "analysis": "视图的数据源可以是基本表，也可以是其他视图，是基于查询结果的虚表，不存储实际数据。"
+    },
+    {
+      "id": 73,
+      "type": "单选题",
+      "title": "下列关于视图的描述，正确的是（ ）。",
+      "options": {
+        "A": "视图可以像表一样存储数据",
+        "B": "视图的更新操作总是被允许",
+        "C": "视图是基于基本表的查询结果",
+        "D": "视图不能嵌套创建"
+      },
+      "correct_answer": "C",
+      "analysis": "A错误：视图是虚表，不存储数据；B错误：复杂视图（如含聚合函数、DISTINCT）无法更新；D错误：视图可以嵌套创建。"
+    },
+    {
+      "id": 74,
+      "type": "单选题",
+      "title": "当对视图进行 UPDATE、INSERT和DELETE操作时，为了保证被操作的元组满足视图定义中子查询语句的谓词条件，应在视图定义语句中使用可选择项（    ）。",
+      "options": {
+        "A": "With Revoke Option",
+        "B": "With Check Option",
+        "C": "With Role Option",
+        "D": "With Grant Option"
+      },
+      "correct_answer": "B",
+      "analysis": "WITH CHECK OPTION用于保证通过视图修改的数据仍满足视图的查询条件，防止修改后的数据无法通过视图查询到。"
+    },
+    {
+      "id": 75,
+      "type": "单选题",
+      "title": "下列关于视图的说法，错误的是（  ）。",
+      "options": {
+        "A": "视图可以基于一个或多个基本表创建",
+        "B": "对视图的更新最终会转换为对基本表的更新",
+        "C": "视图是物理存储的数据集合",
+        "D": "视图能简化用户的数据查询操作"
+      },
+      "correct_answer": "C",
+      "analysis": "视图是虚表，仅存储查询定义，不物理存储数据，所有对视图的操作最终都会映射到基本表上。"
+    },
+    {
+      "id": 76,
+      "type": "单选题",
+      "title": "索引的以下哪种使用策略是不恰当的（    ）。",
+      "options": {
+        "A": "在频繁作为查询条件的列上建立索引",
+        "B": "在频繁更新的列上建立大量索引",
+        "C": "在外键列上建立索引以优化连接查询",
+        "D": "在区分度高的列上建立索引"
+      },
+      "correct_answer": "B",
+      "analysis": "索引会提升查询效率，但降低更新（INSERT/UPDATE/DELETE）效率，频繁更新的列上建立大量索引会严重影响性能。"
+    },
+    {
+      "id": 77,
+      "type": "单选题",
+      "title": "在MySQL中，为Score表的grade列创建降序索引，正确的是(   )。",
+      "options": {
+        "A": "CREATE INDEX idx_grade ON Score(grade);",
+        "B": "CREATE INDEX idx_grade ON Score(grade DESC);",
+        "C": "CREATE DESC INDEX idx_grade ON Score(grade);",
+        "D": "CREATE INDEX idx_grade ON Score(grade ASC);"
+      },
+      "correct_answer": "B",
+      "analysis": "MySQL中创建降序索引的语法为CREATE INDEX 索引名 ON 表名(列名 DESC)；ASC是升序（默认），无需显式指定。"
+    },
+    {
+      "id": 78,
+      "type": "单选题",
+      "title": "下列关于索引的说法中正确的是（）。",
+      "options": {
+        "A": "一个表可以建立多个聚簇索引",
+        "B": "索引只能建立在一个字段上",
+        "C": "索引可以加快表之间连接的速度",
+        "D": "只能使用CREATE  INDEX句创建索引"
+      },
+      "correct_answer": "C",
+      "analysis": "A错误：一个表只能有一个聚簇索引；B错误：支持复合索引（多个字段）；D错误：主键/唯一约束会自动创建索引。"
+    },
+    {
+      "id": 79,
+      "type": "单选题",
+      "title": "下列关于索引的描述，正确的是（ ）。",
+      "options": {
+        "A": "索引会降低数据更新效率",
+        "B": "一个表只能有一个索引",
+        "C": "索引存储实际业务数据",
+        "D": "删除索引会影响主键约束"
+      },
+      "correct_answer": "A",
+      "analysis": "索引需要随数据更新而维护，因此会降低INSERT/UPDATE/DELETE效率；一个表可创建多个索引；索引仅存储索引键和指针，不存储业务数据；删除普通索引不影响主键约束。"
+    },
+    {
+      "id": 80,
+      "type": "单选题",
+      "title": "对于需要快速查找等值条件（如 WHERE id=10）的列，最适合创建的索引是（  ）。",
+      "options": {
+        "A": "B +树索引",
+        "B": "哈希索引",
+        "C": "位图索引",
+        "D": "全文索引"
+      },
+      "correct_answer": "B",
+      "analysis": "哈希索引适用于等值查询（=），查询效率为O(1)；B+树索引适用于范围查询；位图索引适用于低基数列；全文索引适用于文本检索。"
+    },
+    {
+      "id": 81,
+      "type": "单选题",
+      "title": "对于频繁进行范围查询（如BETWEEN, >, <）的列，最适合创建的索引是（    ）。",
+      "options": {
+        "A": "唯一索引",
+        "B": "位图索引",
+        "C": "B+树索引",
+        "D": "哈希索引"
+      },
+      "correct_answer": "C",
+      "analysis": "B+树索引的结构支持高效的范围查询（如>、<、BETWEEN），哈希索引仅支持等值查询，无法用于范围查询。"
+    },
+    {
+      "id": 82,
+      "type": "单选题",
+      "title": "下列关于数据库索引的描述，正确的是（    ）。",
+      "options": {
+        "A": "索引会降低数据查询效率，但能提升插入、更新操作的性能",
+        "B": "一个表只能创建一个索引，且索引必须基于主键列",
+        "C": "索引的本质是一种优化数据查询的数据结构，不存储实际业务数据",
+        "D": "删除索引会导致对应的基本表数据丢失"
+      },
+      "correct_answer": "C",
+      "analysis": "A错误：索引提升查询效率，降低更新效率；B错误：一个表可创建多个索引，索引可基于任意列；D错误：删除索引仅删除索引结构，不影响表数据。"
+    },
+    {
+      "id": 83,
+      "type": "单选题",
+      "title": "下列不属于事务 ACID 特性的是（  ）。",
+      "options": {
+        "A": "原子性",
+        "B": "并发性",
+        "C": "一致性",
+        "D": "隔离性"
+      },
+      "correct_answer": "B",
+      "analysis": "事务的ACID特性包括：原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability），并发性不属于ACID特性。"
+    },
+    {
+      "id": 84,
+      "type": "单选题",
+      "title": "下列关于事务隔离性的描述，正确的是（  ）。",
+      "options": {
+        "A": "事务一旦提交，对数据库的修改是永久的",
+        "B": "事务中所有操作要么全部执行，要么全部不执行",
+        "C": "多个事务并发执行时，一个事务的执行不能被其他事务干扰",
+        "D": "事务执行前后，数据库的完整性约束保持不变"
+      },
+      "correct_answer": "C",
+      "analysis": "A是持久性，B是原子性，C是隔离性，D是一致性。"
+    },
+    {
+      "id": 85,
+      "type": "单选题",
+      "title": "事务的隔离性是指（  ）。",
+      "options": {
+        "A": "事务提交后结果永久",
+        "B": "事务内部操作对外不可见",
+        "C": "事务全部执行或全部不执行",
+        "D": "事务之间互不干扰"
+      },
+      "correct_answer": "D",
+      "analysis": "隔离性保证多个并发事务之间相互独立，互不干扰，每个事务都感觉不到其他事务的存在。"
+    },
+    {
+      "id": 86,
+      "type": "单选题",
+      "title": "数据库恢复过程中，事务日志主要用于实现哪种恢复操作（    ）。",
+      "options": {
+        "A": "数据压缩",
+        "B": "数据加密",
+        "C": "回滚和重做",
+        "D": "数据归档"
+      },
+      "correct_answer": "C",
+      "analysis": "事务日志记录了所有对数据库的修改操作，故障恢复时可通过日志重做已提交的事务，回滚未提交的事务。"
+    },
+    {
+      "id": 87,
+      "type": "单选题",
+      "title": "下列关于数据库事务ACID 特性的描述中，错误的是（    ）。",
+      "options": {
+        "A": "原子性指事务中的操作要么全部执行成功，要么全部回滚，不存在部分执行的情况",
+        "B": "一致性指事务执行前后，数据库的完整性约束始终保持有效",
+        "C": "隔离性指多个并发执行的事务之间相互独立，一个事务的执行不会被其他事务干扰，且所有事务看起来都是串行执行的",
+        "D": "持久性指事务一旦提交，其对数据库的修改就会永久保存，即使发生数据库崩溃或系统故障也不会丢失"
+      },
+      "correct_answer": "C",
+      "analysis": "隔离性不要求所有事务串行执行，而是通过隔离级别控制并发事务的可见性，不同隔离级别下事务的可见性不同。"
+    },
+    {
+      "id": 88,
+      "type": "单选题",
+      "title": "下面选项中，关于MySQL中开启事务的SQL语句，正确的是（    ）。",
+      "options": {
+        "A": " BEGIN TRANSACTION;",
+        "B": " START TRANSACTION;",
+        "C": " END TRANSACTION;",
+        "D": " STOP TRANSACTION;"
+      },
+      "correct_answer": "B",
+      "analysis": "MySQL中开启事务的标准语句是START TRANSACTION；BEGIN TRANSACTION是T-SQL（SQL Server）语法；END/STOP TRANSACTION不是有效语句。"
+    },
+    {
+      "id": 89,
+      "type": "单选题",
+      "title": "事务日志的用途是（    ）。",
+      "options": {
+        "A": "事务处理",
+        "B": "数据恢复",
+        "C": "完整性约束",
+        "D": "安全性控制"
+      },
+      "correct_answer": "B",
+      "analysis": "事务日志的核心作用是数据恢复，包括崩溃恢复、时点恢复等，保证事务的持久性和一致性。"
+    },
+    {
+      "id": 90,
+      "type": "单选题",
+      "title": "DBS运行的最小逻辑单位是（）。",
+      "options": {
+        "A": "数据",
+        "B": "事务",
+        "C": "记录",
+        "D": "函数"
+      },
+      "correct_answer": "B",
+      "analysis": "事务是数据库系统运行的最小逻辑单位，所有数据库操作都以事务为单位执行，保证ACID特性。"
+    },
+    {
+      "id": 91,
+      "type": "单选题",
+      "title": "关于MySQL中提交事务并将修改永久保存到数据库的SQL语句是（    ）。",
+      "options": {
+        "A": "ROLLBACK;",
+        "B": "COMMIT;",
+        "C": "SAVEPOINT;",
+        "D": "RELEASE SAVEPOINT;"
+      },
+      "correct_answer": "B",
+      "analysis": "COMMIT用于提交事务，将事务中的修改永久保存；ROLLBACK用于回滚事务；SAVEPOINT用于设置保存点。"
+    },
+    {
+      "id": 92,
+      "type": "单选题",
+      "title": "关于数据库事务的持久性特性，以下描述正确的是（    ）。",
+      "options": {
+        "A": "事务执行过程中的中间状态对其他事务不可见",
+        "B": "事务提交后，其对数据库的修改是永久性的",
+        "C": "事务中的所有操作要么全部执行，要么全部不执行",
+        "D": "并发执行的事务互不干扰"
+      },
+      "correct_answer": "B",
+      "analysis": "持久性（Durability）保证事务提交后，即使发生系统故障，修改也不会丢失；A是隔离性，C是原子性，D是隔离性。"
+    },
+    {
+      "id": 93,
+      "type": "单选题",
+      "title": "MySQL中，用于回滚到保存点的语句是（    ）。",
+      "options": {
+        "A": "ROLLBACK TO SAVEPOINT",
+        "B": "ROLLBACK",
+        "C": "RETURN TO SAVEPOINT",
+        "D": "RETURN"
+      },
+      "correct_answer": "A",
+      "analysis": "ROLLBACK TO SAVEPOINT 保存点名 用于回滚到指定保存点；ROLLBACK会回滚整个事务；RETURN不是事务相关语句。"
+    },
+    {
+      "id": 94,
+      "type": "单选题",
+      "title": "下列关于事务ACID特性的描述，错误的是（ ）。",
+      "options": {
+        "A": "原子性保证操作不可分割",
+        "B": "一致性保证数据状态合法",
+        "C": "隔离性允许事务相互干扰",
+        "D": "持久性保证结果永久保存"
+      },
+      "correct_answer": "C",
+      "analysis": "隔离性的核心是防止事务之间相互干扰，保证并发事务的独立性，而非允许干扰。"
+    },
+    {
+      "id": 95,
+      "type": "单选题",
+      "title": "MySQL中用于设置自动提交模式关闭的命令是（ ）。",
+      "options": {
+        "A": "SET autocommit=0;",
+        "B": "SET autocommit=TRUE;",
+        "C": "START TRANSACTION;",
+        "D": "COMMIT;"
+      },
+      "correct_answer": "A",
+      "analysis": "MySQL默认自动提交（autocommit=1/TRUE），设置autocommit=0/FALSE可关闭自动提交，需手动COMMIT/ROLLBACK。"
+    },
+    {
+      "id": 96,
+      "type": "单选题",
+      "title": "在MySQL存储过程中，声明局部变量的正确格式是（    ）。",
+      "options": {
+        "A": "DECLARE @name VARCHAR (20);",
+        "B": "SET @name VARCHAR (20);",
+        "C": "DECLARE name VARCHAR (20);",
+        "D": "CREATE @name VARCHAR (20);"
+      },
+      "correct_answer": "C",
+      "analysis": "MySQL存储过程中声明局部变量的语法为DECLARE 变量名 数据类型；@name是用户变量，不是局部变量。"
+    },
+    {
+      "id": 97,
+      "type": "单选题",
+      "title": "局部变量的声明语句是（    ）。",
+      "options": {
+        "A": "DECLARE",
+        "B": "SET",
+        "C": "SELECT",
+        "D": "PRINT"
+      },
+      "correct_answer": "A",
+      "analysis": "DECLARE用于声明局部变量；SET/SELECT用于给变量赋值；PRINT用于输出（T-SQL）。"
+    },
+    {
+      "id": 98,
+      "type": "单选题",
+      "title": "关于存储过程和函数的区别，说法正确的是（  ）。",
+      "options": {
+        "A": "存储过程不能返回值，函数可以返回值",
+        "B": "存储过程可以有输出参数，函数只能有输入参数",
+        "C": "存储过程可以包含事务控制语句，函数不能",
+        "D": "存储过程不能被嵌套调用，函数可以"
+      },
+      "correct_answer": "C",
+      "analysis": "A错误：存储过程可通过输出参数返回值；B错误：函数支持输出参数；D错误：存储过程可嵌套调用；C正确：函数中不能使用COMMIT/ROLLBACK等事务控制语句。"
+    },
+    {
+      "id": 99,
+      "type": "单选题",
+      "title": "以下关于存储过程和触发器的说法，错误的是（  ）。",
+      "options": {
+        "A": "存储过程需要显式调用才能执行，而触发器是由特定事件自动触发的",
+        "B": "存储过程可以返回多个结果集，而触发器不能有返回值",
+        "C": "触发器可以在同一个表上创建多个，但触发时机（BEFORE/AFTER）相同的事件只能有一个触发器",
+        "D": "存储过程和触发器都可以包含事务控制语句（如 COMMIT、ROLLBACK）"
+      },
+      "correct_answer": "D",
+      "analysis": "触发器是事务的一部分，不能包含独立的COMMIT/ROLLBACK语句，否则会破坏原事务的原子性。"
+    },
+    {
+      "id": 100,
+      "type": "单选题",
+      "title": "触发程序中的（    ）语句不能产生结果集。",
+      "options": {
+        "A": "INSERT",
+        "B": "SELECT",
+        "C": "UPDATE",
+        "D": "DELETE"
+      },
+      "correct_answer": "B",
+      "analysis": "触发器中不能执行返回结果集的SELECT语句（如SELECT * FROM 表），只能执行无结果集的SELECT（如SELECT ... INTO）。"
+    },
+    {
+      "id": 101,
+      "type": "单选题",
+      "title": "MySQL触发器中，引用UPDATE操作前记录的关键字是（    ）。",
+      "options": {
+        "A": "NEW",
+        "B": "OLD",
+        "C": "CURRENT",
+        "D": "PAST"
+      },
+      "correct_answer": "B",
+      "analysis": "MySQL触发器中，OLD引用更新/删除前的记录，NEW引用插入/更新后的记录。"
+    },
+    {
+      "id": 102,
+      "type": "单选题",
+      "title": "MySQL 数据库操作用于备份数据库的命令是（    ）。",
+      "options": {
+        "A": "MYSQLDUMP",
+        "B": "EXPORT DATABASE",
+        "C": "BACKUP DATABASE",
+        "D": "BACKUP TABLE"
+      },
+      "correct_answer": "A",
+      "analysis": "mysqldump是MySQL官方的备份工具，用于导出数据库结构和数据；EXPORT/BACKUP DATABASE是SQL Server语法。"
+    },
+    {
+      "id": 103,
+      "type": "单选题",
+      "title": "在MySQL中，用于收回用户对表的DELETE权限的命令是（  ）。",
+      "options": {
+        "A": "REVOKE DELETE ON … FROM …",
+        "B": "TAKE BACK DELETE ON … FROM …",
+        "C": "REMOVE DELETE ON … FROM …",
+        "D": "CANCEL DELETE ON … FROM …"
+      },
+      "correct_answer": "A",
+      "analysis": "SQL标准中，授予权限用GRANT，收回权限用REVOKE，其他选项均非有效命令。"
+    },
+    {
+      "id": 104,
+      "type": "单选题",
+      "title": "用于记录数据库中所有更新操作，为故障恢复提供依据的是（  ）。",
+      "options": {
+        "A": "数据字典",
+        "B": "日志文件",
+        "C": "索引文件",
+        "D": "备份文件"
+      },
+      "correct_answer": "B",
+      "analysis": "日志文件（如重做日志、二进制日志）记录所有更新操作，是故障恢复的核心依据；备份文件用于基础恢复，日志用于增量恢复。"
+    },
+    {
+      "id": 105,
+      "type": "单选题",
+      "title": "在MySQL中，用于授予用户对表执行SELECT权限的命令是（  ）。",
+      "options": {
+        "A": "GRANT SELECT ON … TO …",
+        "B": "ALLOW SELECT ON … TO …",
+        "C": "PERMIT SELECT ON … TO …",
+        "D": "AUTHORIZE SELECT ON … TO …"
+      },
+      "correct_answer": "A",
+      "analysis": "GRANT是授予权限的标准SQL命令，语法为GRANT 权限 ON 表名 TO 用户名。"
+    },
+    {
+      "id": 106,
+      "type": "单选题",
+      "title": "用于实现数据库故障恢复的核心技术是（  ）。",
+      "options": {
+        "A": "视图",
+        "B": "索引",
+        "C": "日志文件",
+        "D": "存储过程"
+      },
+      "correct_answer": "C",
+      "analysis": "日志文件记录了所有数据库修改操作，故障恢复时通过重做日志（REDO）和回滚日志（UNDO）恢复数据，是故障恢复的核心。"
+    },
+    {
+      "id": 107,
+      "type": "单选题",
+      "title": "数据库恢复的基本原则是（    ）。",
+      "options": {
+        "A": "有备份即可恢复",
+        "B": "利用备份和事务日志恢复",
+        "C": "仅恢复数据不恢复结构",
+        "D": "优先恢复索引"
+      },
+      "correct_answer": "B",
+      "analysis": "数据库恢复需要结合全量备份（基础）和事务日志（增量），才能恢复到故障前的最新状态；仅备份只能恢复到备份时点，无法恢复后续数据。"
+    },
+    {
+      "id": 108,
+      "type": "单选题",
+      "title": "在数据库中，以下哪种权限允许用户修改现有表的结构（    ）。",
+      "options": {
+        "A": "ALTER",
+        "B": "MODIFY",
+        "C": "UPDATE",
+        "D": "CREATE"
+      },
+      "correct_answer": "A",
+      "analysis": "ALTER权限允许用户执行ALTER TABLE语句修改表结构；UPDATE权限仅允许修改表数据；CREATE权限允许创建表/数据库。"
+    },
+    {
+      "id": 109,
+      "type": "单选题",
+      "title": "在执行数据库差异备份之前，需要事先完成的备份是（）。",
+      "options": {
+        "A": "数据库完整备份",
+        "B": "数据库差异备份",
+        "C": "事务日志备份",
+        "D": "文件和文件组备份"
+      },
+      "correct_answer": "A",
+      "analysis": "差异备份是基于最近一次完整备份的增量备份，必须先完成完整备份才能执行差异备份。"
+    },
+    {
+      "id": 110,
+      "type": "单选题",
+      "title": "数据库的并发控制主要解决的问题是（ ）。",
+      "options": {
+        "A": "数据丢失",
+        "B": "数据重复",
+        "C": "数据不一致",
+        "D": "数据加密"
+      },
+      "correct_answer": "C",
+      "analysis": "并发控制通过锁、隔离级别等机制，解决多个事务并发执行时可能出现的脏读、不可重复读、幻读等数据不一致问题。"
+    },
+    {
+      "id": 111,
+      "type": "单选题",
+      "title": "下面有关数据库还原的说法中，错误的是（）",
+      "options": {
+        "A": "还原数据库是通过备份好的数据文件进行还原",
+        "B": "还原是指还原数据库中的数据，而库是不能被还原的",
+        "C": "使用mysql命令可以还原数据库中的数据",
+        "D": "数据库中的库可以被还原的"
+      },
+      "correct_answer": "B",
+      "analysis": "数据库还原既可以还原数据，也可以还原库结构（如通过mysqldump备份的完整库，还原时会重建库和表结构），B的描述错误。"
+    }
+  ]
+
+}

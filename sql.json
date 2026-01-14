@@ -1,0 +1,156 @@
+{
+  "exam_info": {
+    "title": "SQL数据库简答题（综合场景）",
+    "total_questions": 3,
+    "types": ["简答题"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "type": "简答题",
+      "title": "某健身中心管理系统数据库包含以下关系：<br/>健身房：Gym(gid, gname, location, phone)（健身房编号，名称，位置，电话）<br/>会员：Member(mid, mname, gender, level, gid, expire_date)（会员号，姓名，性别，会员等级，健身房编号，会员有效日期）<br/>课程：Course(cid, cname, coach, fee)（课程号，课程名，教练，费用）<br/>课程报名：Registration(mid, cid, reg_date)（会员号，课程号，报名日期）<br/>使用SQL语句完成以下7个操作：",
+      "sub_questions": [
+        {
+          "id": "1.1",
+          "title": "对‘程文’教练执教课程中费用最低的进行价格调整，上调幅度为15%。",
+          "answer": "UPDATE Course SET fee = fee * 1.15 \nWHERE coach = '程文' and fee =  \n(SELECT MIN(fee) FROM Course WHERE coach = '程文' );",
+          "analysis": "使用UPDATE语句更新课程价格，通过子查询找到程文教练执教课程中的最低费用，然后对满足条件的课程进行价格上调。"
+        },
+        {
+          "id": "1.2",
+          "title": "查询每个健身房拥有的“钻石”级别会员的人数，显示健身房名称和会员人数。",
+          "answer": "SELECT g.gname, COUNT(*) AS 会员人数 \nFROM Gym g JOIN Member m  ON g.gid = m.gid     \nWHERE m.level = '钻石'\nGROUP BY g.gid, g.gname;",
+          "analysis": "使用JOIN连接Gym和Member表，WHERE子句筛选钻石级别会员，GROUP BY按健身房分组，COUNT函数统计会员人数。"
+        },
+        {
+          "id": "1.3",
+          "title": "创建视图 V_A，包含课程号、课程名、课程总金额，并按照课程总金额降序排序。",
+          "answer": "CREATE VIEW V_A AS\nSELECT c.cid , c.cname ,(c.fee * COUNT(r.cid))  课程总金额  \nFROM Course c JOIN Registration r ON c.cid = r.cid \nGROUP BY c.cid, c.cname, c.fee \nORDER BY 课程总金额 DESC;",
+          "analysis": "创建视图V_A，连接Course和Registration表，计算每门课程的总金额（费用乘以报名人数），并按照总金额降序排列。"
+        },
+        {
+          "id": "1.4",
+          "title": "查询报名课程数量超过2门的会员信息，显示会员姓名和报名课程总数。",
+          "answer": "SELECT m.mname, COUNT(r.cid) AS 报名课程总数  \nFROM Member m  \nJOIN Registration r ON m.mid = r.mid  \nGROUP BY m.mid, m.mname \nHAVING COUNT(r.cid) > 2;",
+          "analysis": "连接Member和Registration表，GROUP BY按会员分组，HAVING子句过滤报名课程数超过2的会员。"
+        },
+        {
+          "id": "1.5",
+          "title": "删除所有费用低于1000且没有任何会员报名的课程记录。",
+          "answer": "DELETE FROM Course \nWHERE fee<1000  \nAND cid NOT IN  \n(SELECT cid FROM Registration);",
+          "analysis": "使用DELETE语句删除满足条件的课程记录，WHERE子句筛选费用低于1000且课程编号不在报名表中的课程。"
+        },
+        {
+          "id": "1.6",
+          "title": "创建存储过程 P_AdjustSalary，实现为健身房编号‘01’对应的黄金会员，将其会员等级更改为‘钻石’，并记录调整人数。若没有符合条件的会员，则回滚并提示“无符合条件会员”；否则提交事务，并输出“成功为X名会员提升等级”。",
+          "answer": "DELIMITER //\nCREATE PROCEDURE P_AdjustSalary()\nBEGIN\n    DECLARE cnt INT DEFAULT 0;\n    START TRANSACTION;\n    UPDATE Member SET level = '钻石' WHERE gid = '01' AND level = '黄金';\n    SET cnt = ROW_COUNT();\n    IF cnt = 0 THEN\n        ROLLBACK;\n        SELECT '无符合条件会员' AS 结果;\n    ELSE\n        COMMIT;\n        SELECT CONCAT('成功为', cnt, '名会员提升等级') AS 结果;\n    END IF;\nEND //\nDELIMITER ;",
+          "analysis": "创建存储过程，使用事务控制，更新会员等级，ROW_COUNT()获取受影响行数，根据行数决定提交或回滚。"
+        },
+        {
+          "id": "1.7",
+          "title": "创建触发器 T_CheckReg，当向Registration表插入报名记录时，检查该会员是否已在同一天报名了其他课程。若是，则拒绝插入并提示“同一天只能报名一门课程”。",
+          "answer": "DELIMITER //\nCREATE TRIGGER T_CheckReg BEFORE INSERT ON Registration\nFOR EACH ROW\nBEGIN\n    DECLARE reg_count INT;\n    SELECT COUNT(*) INTO reg_count FROM Registration WHERE mid = NEW.mid AND reg_date = NEW.reg_date;\n        IF reg_count > 0 THEN\n        SIGNAL SQLSTATE '45000'\n        SET MESSAGE_TEXT = '同一天只能报名一门课程';\n    END IF;\nEND //\nDELIMITER ;",
+          "analysis": "创建BEFORE INSERT触发器，在插入前检查该会员在同一天是否已有报名记录，如果有则使用SIGNAL抛出错误。"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "简答题",
+      "title": "校园社团活动管理系统的数据库包含以下关系：<br/>club(cno, cname, location, found_time)（社团编号、社团名称、活动地点、成立时间）<br/>member(mno, name, sex, grade, join_time, score, cno)（社员编号、姓名、性别、年级、加入时间、积分、所属社团编号）<br/>activity(ano, aname, type, start_time, duration)（活动编号、活动名称、活动类型、开始时间、持续时长（小时））<br/>participate(mno, ano,cno,attend_num)（社员编号、活动编号、社团编号、参与次数）<br/>使用SQL语句完成以下7个操作：",
+      "sub_questions": [
+        {
+          "id": "2.1",
+          "title": "将社团名为“音乐社团”的社员积分增加9分。",
+          "answer": "UPDATE member \nSET score = score + 9 \nWHERE cno IN \n(SELECT cno FROM club WHERE cname='音乐社团');",
+          "analysis": "使用UPDATE语句更新社员积分，通过子查询找到音乐社团的编号，然后对所属该社团的社员增加积分。"
+        },
+        {
+          "id": "2.2",
+          "title": "查询社员平均积分超过70分的社团，结果显示社团名和平均积分（avgscore）字段。",
+          "answer": "SELECT cname , AVG(score) AS avgscore  \nFROM club JOIN member ON club.cno = member.cno \nGROUP BY club.cno, cname\nHAVING AVG(score)>70;",
+          "analysis": "连接club和member表，GROUP BY按社团分组，HAVING子句过滤平均积分超过70的社团。"
+        },
+        {
+          "id": "2.3",
+          "title": "创建视图AV1，包含社团名、活动名、活动类型、开始时间和参与次数字段。",
+          "answer": "CREATE VIEW AV1\nAS SELECT cname, aname, type, start_time, attend_num \nFROM club \nJOIN participate ON club.cno = participate.cno \nJOIN activity ON participate.ano = activity.ano;",
+          "analysis": "创建视图AV1，连接club、participate和activity三张表，选择所需字段。"
+        },
+        {
+          "id": "2.4",
+          "title": "查询所有参与了“编程社”举办的“算法竞赛”活动的社员姓名。",
+          "answer": "SELECT name FROM member \nWHERE mno IN(  \n    SELECT p.mno FROM participate p \n    JOIN club c USING(cno) \n    JOIN activity a USING(ano)   \n    WHERE c.cname='编程社' AND a.aname='算法竞赛'\n);",
+          "analysis": "使用嵌套子查询，先找出参与编程社算法竞赛活动的社员编号，再查询这些社员的姓名。"
+        },
+        {
+          "id": "2.5",
+          "title": "删除活动表中“讲座”类型且参与次数少于6的活动信息。",
+          "answer": "DELETE FROM activity \nWHERE type ='讲座' \nAND ano IN \n(SELECT ano FROM participate WHERE attend_num<6);",
+          "analysis": "使用DELETE语句删除活动记录，WHERE子句筛选类型为讲座且参与次数少于6的活动。"
+        },
+        {
+          "id": "2.6",
+          "title": "创建存储过程P1，实现开启事务后将“竞赛类”活动的持续时长增加1小时，并查询社员表中积分低于60的社员，如有则删除该社员及其参与记录，并提示“清理完成！”；否则回滚操作，并提示“无低积分社员，清理失败！”。",
+          "answer": "DELIMITER //\nCREATE PROCEDURE P1()\nBEGIN \n    START TRANSACTION;  \n    UPDATE activity SET duration = duration + 1 WHERE type='竞赛类';\n    SAVEPOINT point1;    \n    IF EXISTS(SELECT * FROM member WHERE score<60) THEN  \n        DELETE FROM member WHERE score < 60;\n        SELECT '清理完成！'; \n        COMMIT;      \n    ELSE \n        ROLLBACK TO SAVEPOINT point1;\n        SELECT '无低积分社员，清理失败！'; \n        COMMIT;\n    END IF; \nEND //\nDELIMITER ;",
+          "analysis": "创建存储过程，使用事务和保存点，先更新活动时长，然后检查是否有低积分社员，根据情况执行删除或回滚。"
+        },
+        {
+          "id": "2.7",
+          "title": "创建一个名为IN_CHECK_MEMBER的触发器，要求插入到participate表中的记录必须满足社员号（mno）在member表中存在，否则报错，提示“社员不存在，不能插入该记录！”。",
+          "answer": "DELIMITER //\nCREATE TRIGGER IN_CHECK_MEMBER BEFORE INSERT ON participate \nFOR EACH ROW\nBEGIN\n    IF NEW.mno NOT IN (SELECT mno FROM member) THEN \n        SIGNAL SQLSTATE '45000' \n        SET MESSAGE_TEXT = '社员不存在，不能插入该记录！';\n    END IF;\nEND //\nDELIMITER ;",
+          "analysis": "创建BEFORE INSERT触发器，在插入前检查社员编号是否存在，如果不存在则抛出错误。"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "简答题",
+      "title": "某在线图书销售系统数据库包含以下关系：<br/>图书：Book(bid,bname,author,price,stock)（图书编号、书名、作者、价格、库存）<br/>用户：User(uid,uname,gender,phone,reg_date)（用户编号、姓名、性别、电话、注册日期）<br/>订单：Order(oid,uid,order_date,total_amount)（订单编号、用户编号、下单日期、订单总金额）<br/>订单详情：OrderItem(oid,bid,quantity)（订单编号、图书编号、购买数量）<br/>使用SQL语句完成以下7个操作：",
+      "sub_questions": [
+        {
+          "id": "3.1",
+          "title": "将订单编号为‘20251209’中图书的价格统一下调7%。",
+          "answer": "UPDATE Book SET price = price * 0.93 \nWHERE bid IN  \n(SELECT bid FROM OrderItem WHERE oid = '20251209');",
+          "analysis": "通过子查询找到订单20251209中涉及的所有图书编号，然后更新这些图书的价格。"
+        },
+        {
+          "id": "3.2",
+          "title": "查询订单总数大于3的用户名和订单数量。",
+          "answer": "SELECT u.uname, COUNT(o.oid) AS 订单数量  \nFROM User u \nJOIN Order o ON u.uid = o.uid \nGROUP BY u.uid, u.uname   \nHAVING COUNT(o.oid) > 3;",
+          "analysis": "连接User和Order表，GROUP BY按用户分组，HAVING子句过滤订单数大于3的用户。"
+        },
+        {
+          "id": "3.3",
+          "title": "创建视图V_BO，包含图书编号、图书名和销售总量，按销售总量降序排序。",
+          "answer": "CREATE VIEW V_BO AS\nSELECT b.bid, b.bname, SUM(oi.quantity) AS 销售总量   \nFROM Book b \nJOIN OrderItem oi ON b.bid = oi.bid \nGROUP BY b.bid, b.bname \nORDER BY 销售总量 DESC;",
+          "analysis": "创建视图V_BO，连接Book和OrderItem表，GROUP BY按图书分组，SUM函数计算销售总量，按总量降序排序。"
+        },
+        {
+          "id": "3.4",
+          "title": "查询库存大于50且销售总量超过7的图书信息，显示书名、库存和销售总量。",
+          "answer": "SELECT b.bname, b.stock, SUM(oi.quantity) AS 销售总量\nFROM Book b  \nJOIN OrderItem oi ON b.bid = oi.bid   \nGROUP BY b.bid, b.bname, b.stock   \nHAVING b.stock > 50 AND SUM(oi.quantity) > 7;",
+          "analysis": "连接Book和OrderItem表，GROUP BY按图书分组，HAVING子句同时过滤库存和销售总量条件。"
+        },
+        {
+          "id": "3.5",
+          "title": "删除用户“李明”的订单总金额小于300的所有订单记录。",
+          "answer": "DELETE FROM Order    \nWHERE uid IN    \n    (SELECT uid FROM User WHERE uname = '李明') \n    AND total_amount < 300;",
+          "analysis": "通过子查询找到用户李明的uid，然后删除该用户总金额小于300的订单记录。"
+        },
+        {
+          "id": "3.6",
+          "title": "创建存储过程 P_U，将订单编号为‘2025001’的图书购买数量改为10，并设置保存点sp1。查询订单编号为‘2025001’中图书库存是否大于10，若库存小于10，则回滚至保存点sp1并提示“库存不足，请增加库存量”；否则提交事务并提示“库存充足”。",
+          "answer": "DELIMITER //\nCREATE PROCEDURE P_U()\nBEGIN\n    START TRANSACTION;    \n    UPDATE OrderItem SET quantity = 10 WHERE oid = '2025001';    \n    SAVEPOINT sp1;    \n    DECLARE total_stock INT;\n    SELECT b.stock INTO total_stock \n    FROM Book b\n    JOIN OrderItem oi ON b.bid = oi.bid\n    WHERE oi.oid = '2025001';    \n    IF total_stock < 10 THEN\n        ROLLBACK TO SAVEPOINT sp1;\n        SELECT '库存不足，请增加库存量' AS 操作提示;\n    ELSE\n        COMMIT;\n        SELECT '库存充足' AS 操作提示;\n    END IF;\nEND //\nDELIMITER ;",
+          "analysis": "创建存储过程，使用事务和保存点，先更新购买数量，然后检查库存，根据库存情况决定回滚或提交。"
+        },
+        {
+          "id": "3.7",
+          "title": "创建触发器T_CheckOrder，当向Order表插入订单记录时，检查该用户的历史订单总数是否超过5个。若是，则拒绝插入并提示“用户订单数已达上限，无法下单”。",
+          "answer": "DELIMITER //\nCREATE TRIGGER T_CheckOrder\nBEFORE INSERT ON Order\nFOR EACH ROW\nBEGIN\n    DECLARE order_count INT;\n    SELECT COUNT(*) INTO order_count \n    FROM Order \n    WHERE uid = NEW.uid;   \n    IF order_count >= 5 THEN\n        SIGNAL SQLSTATE '45000' \n        SET MESSAGE_TEXT = '用户订单数已达上限，无法下单';\n    END IF;\nEND //\nDELIMITER ;",
+          "analysis": "创建BEFORE INSERT触发器，在插入前统计该用户的历史订单数，如果超过5则抛出错误。"
+        }
+      ]
+    }
+  ]
+}
