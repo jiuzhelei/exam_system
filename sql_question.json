@@ -610,7 +610,7 @@
         "C": "now( )",
         "D": "curdate()"
       },
-      "correct_answer": "C",
+      "correct_answer": "D",
       "analysis": "now()返回当前日期和时间（如2026-01-14 10:00:00）；curdate()仅返回日期；YEAR()返回年份；MAX()是聚合函数。"
     },
     {
@@ -1251,5 +1251,6 @@
       "analysis": "数据库还原既可以还原数据，也可以还原库结构（如通过mysqldump备份的完整库，还原时会重建库和表结构），B的描述错误。"
     }
   ]
+
 
 }
